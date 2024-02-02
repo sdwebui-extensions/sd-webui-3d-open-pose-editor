@@ -65,10 +65,11 @@ def on_ui_tabs():
 
 def create_ui():
     try:
+        from modules import shared
         from modules.shared import opts
 
-        cn_max: int = opts.control_net_max_models_num
-        use_online: bool = opts.openpose3d_use_online_version
+        cn_max: int = shared.opts.data.get("control_net_unit_count", 3)
+        use_online: bool = shared.opts.data.get("openpose3d_use_online_version", False)
     except (ImportError, AttributeError):
         cn_max = 0
         use_online = False
